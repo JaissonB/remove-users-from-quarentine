@@ -21,4 +21,4 @@ A simple web tool to process and transform user data exported from a quarantine 
 - No installation or backend required
 
 ## License
-MIT License (or specify your license here)
+MIT License
