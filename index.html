@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="./assets/icon.png" />
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <title>Quarantine</title>
+  </head>
+  <body>
+    <main>
+      <div class="textarea-container">
+        <div class="textarea-group">
+          <label for="input-area">Entrada (cole o response completo)</label>
+          <textarea id="input-area" rows="15" cols="30"></textarea>
+        </div>
+        <div class="textarea-group textarea-group-output" id="output-container">
+          <label for="output-area">Saída</label>
+          <!-- Os textareas dinâmicos serão inseridos aqui pelo JS -->
+        </div>
+      </div>
+      <button id="run-btn">Executar</button>
+    </main>
+    <script src="scripts/script.js"></script>
+  </body>
+</html>

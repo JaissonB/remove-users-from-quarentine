@@ -1,0 +1,209 @@
+body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	background-color: #f0f0f0;
+	font-family: Arial, sans-serif;
+}
+
+.textarea-group {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	flex: 1 1 0;
+	min-width: 0;
+}
+
+.textarea-container {
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	gap: 32px;
+	margin-top: 40px;
+	width: 100%;
+	max-width: 1200px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.textarea-group-output .textarea-wrapper,
+.textarea-group textarea,
+.textarea-group-output textarea {
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.textarea-group-output .textarea-wrapper {
+	position: relative;
+	display: flex;
+	width: 100%;
+}
+
+.textarea-group-output textarea {
+	padding-right: 44px;
+}
+
+.textarea-container > .textarea-group {
+	max-width: 100%;
+}
+
+.output-details {
+	width: 100%;
+	margin-bottom: 22px; /* Espaço maior entre expansíveis */
+	border-radius: 10px;
+	box-shadow: 0 2px 8px rgba(25, 118, 210, 0.07);
+	background: #f8fafd;
+	border: 1.5px solid #e3f2fd;
+	transition: box-shadow 0.2s, border 0.2s;
+}
+
+.output-details[open] {
+	box-shadow: 0 4px 16px rgba(25, 118, 210, 0.13);
+	border-color: #90caf9;
+}
+
+.output-details > summary {
+	font-size: 1.08rem;
+	font-weight: 600;
+	color: #1976d2;
+	padding: 14px 18px 8px 18px;
+	cursor: pointer;
+	outline: none;
+	border-radius: 10px 10px 0 0;
+	background: none;
+	margin-bottom: 10px; /* Espaço maior entre título e conteúdo */
+}
+
+.output-details[open] > summary {
+	background: #e3f2fd;
+}
+
+.output-details .textarea-wrapper {
+	padding: 0 18px 18px 18px;
+}
+
+.textarea-container {
+	width: 90vw;
+}
+
+textarea {
+	width: 100%;
+	min-width: 0;
+	max-width: 100%;
+	min-height: 120px;
+	height: 70vh;
+	padding: 16px;
+	border: 1.5px solid #bdbdbd;
+	border-radius: 12px;
+	background: #fff;
+	box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+	font-size: 1.1rem;
+	color: #222;
+	resize: none;
+	transition: border 0.2s, box-shadow 0.2s;
+	box-sizing: border-box;
+}
+
+.output-area {
+	height: calc(70vh - 20px);
+}
+
+.output-area-unified {
+	height: 43vh;
+}
+
+#run-btn {
+  display: block;
+  margin: 32px auto 0 auto;
+  padding: 14px 38px;
+  background: linear-gradient(90deg, #1976d2 60%, #42a5f5 100%);
+  color: #fff;
+  font-size: 1.15rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(25, 118, 210, 0.10);
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
+}
+
+#run-btn:hover, #run-btn:focus {
+  background: linear-gradient(90deg, #1565c0 60%, #1976d2 100%);
+  box-shadow: 0 4px 16px rgba(25, 118, 210, 0.18);
+  transform: translateY(-2px) scale(1.03);
+  outline: none;
+}
+
+#copy-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 4px;
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(25, 118, 210, 0.08);
+  transition: background 0.2s, box-shadow 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#copy-btn:hover, #copy-btn:focus {
+  background: #e3f2fd;
+  box-shadow: 0 2px 8px rgba(25, 118, 210, 0.16);
+  outline: none;
+}
+
+#copy-btn svg {
+  display: block;
+}
+
+/* Ajuste visual dos títulos "Entrada" e "Saída" */
+.textarea-group > label,
+.textarea-group-output > label,
+.textarea-group-output-label {
+    font-size: 1.13rem;
+    font-weight: 700;
+    color: #1976d2;
+    margin-bottom: 10px;
+    letter-spacing: 0.01em;
+    display: block;
+}
+
+/* Espaço entre o label e o textarea */
+.textarea-group > label + textarea,
+.textarea-group-output > label + textarea,
+.textarea-group-output > label + .output-details {
+    margin-top: 8px;
+}
+
+/* Espaço entre vários output-details dentro do output-container */
+.textarea-group-output .output-details + .output-details {
+    margin-top: 8px;
+}
+
+/* Espaço entre o label e o primeiro output-details */
+.textarea-group-output > label + .output-details {
+    margin-top: 12px;
+}
+
+@media (max-width: 900px) {
+	.textarea-container {
+		flex-direction: column;
+		align-items: center;
+		gap: 20px;
+		width: 100vw;
+		max-width: 100vw;
+	}
+	.textarea-group, .textarea-group-output .textarea-wrapper {
+		width: 100%;
+		max-width: 100vw;
+	}
+	textarea {
+		width: 90vw;
+		max-width: 98vw;
+	}
+}
