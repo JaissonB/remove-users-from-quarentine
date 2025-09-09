@@ -15,6 +15,14 @@ body {
 	min-width: 0;
 }
 
+.input-section {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	flex: 1 1 0;
+	min-width: 0;
+}
+
 .textarea-container {
 	display: flex;
 	justify-content: center;
@@ -34,13 +42,15 @@ body {
 	box-sizing: border-box;
 }
 
-.textarea-group-output .textarea-wrapper {
+.textarea-group-output .textarea-wrapper,
+.textarea-group .textarea-wrapper {
 	position: relative;
 	display: flex;
 	width: 100%;
 }
 
-.textarea-group-output textarea {
+.textarea-group-output textarea,
+.textarea-group .textarea-wrapper textarea {
 	padding-right: 44px;
 }
 
@@ -113,9 +123,13 @@ textarea {
 	height: 43vh;
 }
 
+#ignore-area {
+	height: 25vh;
+}
+
 #run-btn {
   display: block;
-  margin: 32px auto 0 auto;
+  margin: 32px auto 40px auto;
   padding: 14px 38px;
   background: linear-gradient(90deg, #1976d2 60%, #42a5f5 100%);
   color: #fff;

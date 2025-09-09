@@ -12,9 +12,20 @@
   <body>
     <main>
       <div class="textarea-container">
-        <div class="textarea-group">
-          <label for="input-area">Entrada (cole o response completo)</label>
-          <textarea id="input-area" rows="15" cols="30"></textarea>
+        <div class="input-section">
+          <div class="textarea-group">
+            <label for="input-area">Entrada (cole o response completo)</label>
+            <textarea id="input-area" rows="15" cols="30"></textarea>
+          </div>
+          <div class="textarea-group">
+            <label for="ignore-area">Ignorar estas ocorrências</label>
+            <div class="textarea-wrapper">
+              <textarea id="ignore-area" rows="5" cols="30" placeholder="Cole aqui os IDs que devem ser ignorados..."></textarea>
+              <button type="button" class="copy-btn" id="ignore-copy-btn" title="Copiar conteúdo">
+                <svg width="22" height="22" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="6" width="10" height="10" rx="2" fill="#1976d2"/><rect x="3" y="3" width="10" height="10" rx="2" fill="#90caf9"/></svg>
+              </button>
+            </div>
+          </div>
         </div>
         <div class="textarea-group textarea-group-output" id="output-container">
           <label for="output-area">Saída</label>

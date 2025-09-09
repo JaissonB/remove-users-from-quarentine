@@ -12,6 +12,16 @@ $(document).ready(function() {
     $(this).attr('title', 'Copiado!');
     setTimeout(() => $(this).attr('title', 'Copiar saída'), 1200);
   });
+  
+  // Botão de copiar para o textarea de ignorar
+  $('#ignore-copy-btn').on('click', function() {
+    const ignoreArea = $('#ignore-area');
+    ignoreArea[0].select();
+    ignoreArea[0].setSelectionRange(0, 99999);
+    document.execCommand('copy');
+    $(this).attr('title', 'Copiado!');
+    setTimeout(() => $(this).attr('title', 'Copiar conteúdo'), 1200);
+  });
 });
 
 // Função para transformar o usuário conforme a regra de negócio
@@ -77,7 +87,7 @@ function createOutputBlock(content, idx, fullName) {
 }
 
 // Função para processar o texto de entrada e retornar o array de saída
-function processInputText(inputText) {
+function processInputText(inputText, ignoreIds) {
     let inputObj;
     try {
         inputObj = JSON.parse(inputText);
@@ -85,7 +95,13 @@ function processInputText(inputText) {
         return { error: 'JSON inválido' };
     }
     if (!inputObj.content) return { error: 'Formato inválido: campo content não encontrado' };
-    const outputArr = inputObj.content.map(transformUser);
+    
+    // Filtra usuários que não estão na lista de IDs a ignorar
+    const filteredContent = inputObj.content.filter(user => {
+        return !ignoreIds.includes(user.id);
+    });
+    
+    const outputArr = filteredContent.map(transformUser);
     return { outputArr };
 }
 
@@ -93,7 +109,9 @@ function processInputText(inputText) {
 $(document).ready(function() {
   $('#run-btn').on('click', function() {
     const inputText = $('#input-area').val();
-    const result = processInputText(inputText);
+    const ignoreText = $('#ignore-area').val().trim();
+    const ignoreIds = ignoreText ? ignoreText.split(/\s+/) : [];
+    const result = processInputText(inputText, ignoreIds);
     const outputContainer = document.getElementById('output-container');
     // Mantenha o label "Saída" sempre
     outputContainer.innerHTML = '<label for="output-area">Casos ajustados</label>';
@@ -183,6 +201,9 @@ style.innerHTML = `
     outline: none;
     display: flex;
     align-items: center;
+    position: absolute;
+    top: 10px;
+    right: 10px;
 }
 .copy-btn:hover {
     background: #e3f2fd;
