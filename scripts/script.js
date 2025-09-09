@@ -136,20 +136,33 @@ $(document).ready(function() {
     const totalInitial = result.inputObj.content.filter(user => user.idpId != null).length;
     const inputIds = result.inputObj.content.map(user => user.id).join(' ');
     
-    const summaryText = `Casos de entrada: ${totalInput}
-Casos de saída: ${totalOutput}
-Casos em INITIAL: ${totalInitial}
-IDs: ${inputIds}`;
-    summaryArea.val(summaryText);
+    // Cria conteúdo HTML para o resumo
+    const initialStyle = totalInitial > 0 ? 'style="color: #d32f2f; font-weight: bold;"' : '';
+    const summaryHTML = `
+        <div>Casos de entrada: ${totalInput}</div>
+        <div>Casos de saída: ${totalOutput}</div>
+        <div ${initialStyle}>Casos em INITIAL: ${totalInitial}</div>
+        <div>IDs: ${inputIds}</div>
+    `;
+    
+    // Substitui o textarea por um div
+    summaryArea.replaceWith(`<div id="summary-area" class="summary-content">${summaryHTML}</div>`);
+    const newSummaryArea = $('#summary-area');
     
     // Mostra o campo de resumo
     $('.summary-group').show();
     
-    // Ajusta altura automaticamente
-    summaryArea[0].style.height = 'auto';
-    summaryArea[0].style.height = summaryArea[0].scrollHeight + 'px';
+    // Não precisa ajustar altura para div
     result.outputArr.forEach((user, idx) => {
-        const block = createOutputBlock(JSON.stringify(user, null, 4), idx, user.fullName);
+        const userJson = JSON.stringify(user, null, 4);
+        const block = createOutputBlock(userJson, idx, user.fullName);
+        
+        // Encontra o usuário original correspondente pelo ID
+        const originalUser = result.inputObj.content.find(original => original.id === user.id);
+        if (originalUser && originalUser.idpId != null) {
+            block.classList.add('has-idp');
+        }
+        
         outputContainer.appendChild(block);
     });
     // Adiciona textarea fixo com saída unificada

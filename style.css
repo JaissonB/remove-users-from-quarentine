@@ -210,15 +210,27 @@ textarea {
 
 /* Estilo para o campo de resumo */
 #summary-area {
-    height: auto;
     margin: 20px auto;
     max-width: 1200px;
     width: 90vw;
     background: #f5f5f5;
     color: #666;
-    outline: none;
-    overflow: hidden;
-    resize: none;
+    padding: 16px;
+    border: 1.5px solid #bdbdbd;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    font-size: 1.1rem;
+    box-sizing: border-box;
+}
+
+.summary-content div {
+    margin-bottom: 4px;
+}
+
+/* Destacar summary dos casos com idpId em vermelho */
+.output-details.has-idp > summary {
+    color: #d32f2f !important;
+    font-weight: bold !important;
 }
 
 /* Centralizar o título do campo de resumo */
