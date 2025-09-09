@@ -115,6 +115,10 @@ textarea {
 	box-sizing: border-box;
 }
 
+#input-area {
+	height: 50vh;
+}
+
 .output-area {
 	height: calc(70vh - 20px);
 }
@@ -202,6 +206,26 @@ textarea {
 /* Espaço entre o label e o primeiro output-details */
 .textarea-group-output > label + .output-details {
     margin-top: 12px;
+}
+
+/* Estilo para o campo de resumo */
+#summary-area {
+    height: auto;
+    margin: 20px auto;
+    max-width: 1200px;
+    width: 90vw;
+    background: #f5f5f5;
+    color: #666;
+    outline: none;
+    overflow: hidden;
+    resize: none;
+}
+
+/* Centralizar o título do campo de resumo */
+.summary-group {
+    text-align: center;
+    align-items: center;
+    display: none;
 }
 
 @media (max-width: 900px) {

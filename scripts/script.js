@@ -102,7 +102,7 @@ function processInputText(inputText, ignoreIds) {
     });
     
     const outputArr = filteredContent.map(transformUser);
-    return { outputArr };
+    return { outputArr, inputObj };
 }
 
 // Evento do botão Executar
@@ -113,8 +113,11 @@ $(document).ready(function() {
     const ignoreIds = ignoreText ? ignoreText.split(/\s+/) : [];
     const result = processInputText(inputText, ignoreIds);
     const outputContainer = document.getElementById('output-container');
+    const summaryArea = $('#summary-area');
+    
     // Mantenha o label "Saída" sempre
     outputContainer.innerHTML = '<label for="output-area">Casos ajustados</label>';
+    
     if (result.error) {
         // Mostra erro em um textarea único
         const textarea = document.createElement('textarea');
@@ -123,8 +126,28 @@ $(document).ready(function() {
         textarea.readOnly = true;
         textarea.value = result.error;
         outputContainer.appendChild(textarea);
+        summaryArea.val(`Erro: ${result.error}`);
         return;
     }
+    
+    // Atualiza o resumo
+    const totalInput = result.inputObj.content.length;
+    const totalOutput = result.outputArr.length;
+    const totalInitial = result.inputObj.content.filter(user => user.idpId != null).length;
+    const inputIds = result.inputObj.content.map(user => user.id).join(' ');
+    
+    const summaryText = `Casos de entrada: ${totalInput}
+Casos de saída: ${totalOutput}
+Casos em INITIAL: ${totalInitial}
+IDs: ${inputIds}`;
+    summaryArea.val(summaryText);
+    
+    // Mostra o campo de resumo
+    $('.summary-group').show();
+    
+    // Ajusta altura automaticamente
+    summaryArea[0].style.height = 'auto';
+    summaryArea[0].style.height = summaryArea[0].scrollHeight + 'px';
     result.outputArr.forEach((user, idx) => {
         const block = createOutputBlock(JSON.stringify(user, null, 4), idx, user.fullName);
         outputContainer.appendChild(block);
